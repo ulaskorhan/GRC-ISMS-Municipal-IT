@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ISMS Risk Viewer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <p class="eyebrow">Learning project · fictional organisation</p>
+    <h1>Brattli IKT IKS: risks and controls</h1>
+    <p class="lede">An inter-municipal IT company that runs IT for five municipalities, including health and care, social services and schools. This page shows the risk register and the Statement of Applicability (ISO/IEC 27001:2022 Annex A). All data is read from the CSV files in this repository. Nothing is stored or sent anywhere.</p>
+    <nav>
+      <a href="https://github.com/ulaskorhan/GRC-ISMS-Municipal-IT">Repository and documents</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Overview -->
+    <section aria-labelledby="overview-title">
+      <h2 id="overview-title">Overview</h2>
+      <div class="stats" id="stats"></div>
+      <h3 class="sub">Annex A implementation status</h3>
+      <div class="bar" id="soa-bar" role="img"></div>
+      <ul class="legend" id="soa-legend"></ul>
+    </section>
+
+    <!-- Risk matrix -->
+    <section aria-labelledby="matrix-title">
+      <div class="section-head">
+        <h2 id="matrix-title">Risk matrix</h2>
+        <div class="toggle" role="group" aria-label="Show risk before or after treatment">
+          <button type="button" data-view="before" aria-pressed="true">Before treatment</button>
+          <button type="button" data-view="after" aria-pressed="false">After treatment</button>
+        </div>
+      </div>
+      <div id="matrix" class="matrix"></div>
+      <p class="note">Score = likelihood × consequence. Low 1–6, Medium 8–12, High 15–25. Click a risk to see details.</p>
+    </section>
+
+    <!-- Selected risk -->
+    <section id="detail" class="detail" aria-live="polite" hidden></section>
+
+    <!-- Risk register -->
+    <section aria-labelledby="register-title">
+      <div class="section-head">
+        <h2 id="register-title">Risk register</h2>
+        <p class="count">Sorted by score. The ID is a fixed reference, not a rank.</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>ID</th><th>Risk</th><th>Before</th><th>After</th><th>Owner</th></tr>
+          </thead>
+          <tbody id="register-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Statement of Applicability -->
+    <section aria-labelledby="soa-title">
+      <div class="section-head">
+        <h2 id="soa-title">Statement of Applicability</h2>
+        <p id="soa-count" class="count"></p>
+      </div>
+      <div class="filters">
+        <input id="search" type="search" placeholder="Search control or text…" aria-label="Search controls">
+        <select id="theme" aria-label="Theme">
+          <option value="">All themes</option>
+          <option value="5">5 Organizational</option>
+          <option value="6">6 People</option>
+          <option value="7">7 Physical</option>
+          <option value="8">8 Technological</option>
+        </select>
+        <select id="status" aria-label="Status">
+          <option value="">All statuses</option>
+          <option>Implemented</option>
+          <option>Partially implemented</option>
+          <option>Planned</option>
+          <option>Not applicable</option>
+        </select>
+        <select id="risk" aria-label="Linked risk">
+          <option value="">Any linked risk</option>
+        </select>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Control</th><th>Title</th><th>Status</th><th>Justification</th><th>Risks</th></tr>
+          </thead>
+          <tbody id="soa-body"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Made by Ulas Korhan as a self-directed learning project after the Noroff course in information security and security law. The organisation and municipalities are fictional.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
